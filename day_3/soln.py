@@ -27,9 +27,8 @@ def p1(tree_lines, down_del, right_del):
     return sum(steps)
 
 
-def p2(tree_lines):
+def p2(tree_lines, slopes):
     # counts collisions on a list of slopes, takes product
-    slopes = [(1, 1), (1, 3), (1, 5), (1, 7), (2, 1)]
     steps = {(i, j): p1(tree_lines, i, j) for (i, j) in slopes}
     return math.prod(steps.values())
 
@@ -39,5 +38,8 @@ if __name__ == "__main__":
     with open("input.txt") as my_file:
         tree_lines = parse(my_file)
 
-    print(f"P1 Answer: {p1(tree_lines, 1, 3)}")
-    print(f"P2 Answer: {p2(tree_lines)}")
+    slope = (1, 3)
+    print(f"P1 Answer: {p1(tree_lines, *slope)}")
+
+    slopes = [(1, 1), (1, 3), (1, 5), (1, 7), (2, 1)]
+    print(f"P2 Answer: {p2(tree_lines, slopes)}")

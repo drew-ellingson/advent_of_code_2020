@@ -3,13 +3,13 @@ import re
 
 def parse(in_file):
     # return list of dicts
-    raw_pass = in_file.read()
-    int_pass = raw_pass.split("\n\n")  # new record indicator
-    int_pass = [
-        x.replace("\n", " ").split(" ") for x in int_pass
+    raw = in_file.read()
+    intm = raw.split("\n\n")  # new record indicator
+    intm = [
+        x.replace("\n", " ").split(" ") for x in intm
     ]  # delimiter normalization
-    clean_pass = [{x.split(":")[0]: x.split(":")[1] for x in y} for y in int_pass]
-    return clean_pass
+    clean = [{x.split(":")[0]: x.split(":")[1] for x in y} for y in intm]
+    return clean
 
 
 def is_complete(ppt, valid_keys):
@@ -51,15 +51,14 @@ def p1(ppts, valid_keys):
 
 def p2(ppts, valid_keys):
     initial_sweep = list(filter(lambda x: is_complete(x, valid_keys), ppts))
-    valid = list(filter(is_valid, initial_sweep))
-    return len(valid)
+    valid_ppts = list(filter(is_valid, initial_sweep))
+    return len(valid_ppts)
 
 
 if __name__ == "__main__":
-    # with open("input_test_1.txt") as my_file:
     with open("input.txt") as my_file:
-        passports = parse(my_file)
+        ppts = parse(my_file)
     valid_keys = ["ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt"]
 
-    print(f"P1 Answer: {p1(passports, valid_keys)}")
-    print(f"P2 Answer: {p2(passports, valid_keys)}")
+    print(f"P1 Answer: {p1(ppts, valid_keys)}")
+    print(f"P2 Answer: {p2(ppts, valid_keys)}")

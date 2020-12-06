@@ -1,6 +1,3 @@
-import re
-
-
 def parse(in_file):
     # return list of (row, seat) tuples
     raw = [x.strip() for x in in_file.readlines()]
@@ -36,7 +33,6 @@ def p2(seats, bf_lkp, lr_lkp):
         get_seat_id(addr_conv(row, bf_lkp), addr_conv(col, lr_lkp))
         for (row, col) in seats
     ]
-    seat_ids = sorted(seat_ids)
     missing_seat = min([x for x in seat_ids if x + 1 not in seat_ids]) + 1
     
     return missing_seat

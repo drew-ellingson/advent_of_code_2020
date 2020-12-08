@@ -1,6 +1,3 @@
-import itertools
-
-
 def parse(in_file):
     # return dict of {container: {contained: count}}
     def parse_line(line):

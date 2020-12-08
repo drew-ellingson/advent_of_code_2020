@@ -1,5 +1,4 @@
 import itertools
-import json
 
 
 def parse(in_file):

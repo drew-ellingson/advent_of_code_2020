@@ -55,12 +55,11 @@ def p2(rules, target_bag):  # this is wrong but I don't know why. works on both 
 
     weights = assign_weights(rules, target_bag)
 
-    return sum(weights.values()) - weights[target_bag]
+    return sum(weights.values()) - weights[target_bag] # don't include target_bag
 
 
 def p2_v2(rules, target_bag):
     def bags_contained(bag, rules):
-        my_sum = 0
         if rules[bag] == {}:
             return 1
         else:

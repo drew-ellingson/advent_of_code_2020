@@ -40,7 +40,7 @@ def p1(rules, target_bag):
     return len(containers.keys()) - 1  # the target bag itself isn't included
 
 
-def p2(rules, target_bag):  # this is wrong but I don't know why.
+def p2(rules, target_bag):  # this is wrong but I don't know why. works on both testcases
     weights = {}
     weights[target_bag] = 1
 

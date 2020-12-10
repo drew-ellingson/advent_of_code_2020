@@ -1,5 +1,6 @@
 from collections import Counter
 from itertools import chain, combinations
+from datetime import datetime
 import math
 
 
@@ -41,8 +42,8 @@ def gen_sublist(jolt_diffs, index_list):  # thanks mcmanus
 
 
 def running_sum(sublist):
-    """ return list of running cumulative sum of list """
-    return [sum(sublist[0 : i + 1]) for i in range(len(sublist))]
+    """ return list of running sum of len 3 of list """
+    return [sum(sublist[max(i-2,0) : i + 1]) for i in range(len(sublist))]
 
 
 def is_valid(replace_sublist, sublist):
@@ -104,15 +105,21 @@ if __name__ == "__main__":
     test_list_2 = [1, 0, 1, 0, 1]
     test_list_3 = [1, 0, 0, 0, 1]
     test_list_4 = [1, 1, 1, 1, 0]
-    assert running_sum(test_list_1) == [1, 2, 3, 4, 5]
-    assert running_sum(test_list_2) == [1, 1, 2, 2, 3]
+    test_list_5 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    test_list_6 = [1, 0, 1 ,0 ,1, 0, 1, 0, 1, 0, 1]
+
+    assert running_sum(test_list_1) == [1, 2, 3, 3, 3]
+    assert running_sum(test_list_2) == [1, 1, 2, 1, 2]
 
     assert is_valid(test_list_2, test_list_1)
     assert not is_valid(test_list_3, test_list_1)
     assert not is_valid(test_list_4, test_list_1)
+    assert is_valid(test_list_6, test_list_5)
 
     assert replace_index_subset(test_list_1, [1, 2, 3]) == test_list_3
-
+    
+    start_time = datetime.now()
+    
     # with open('input_test_1.txt') as my_file:
     # with open('input_test_2.txt') as my_file:
     with open("input.txt") as my_file:
@@ -120,5 +127,7 @@ if __name__ == "__main__":
 
     jolts, jolt_diffs = prep(jolts)
 
+    start_time = datetime.now()
     print(f"P1 Answer: {p1(jolt_diffs)}")
     print(f"P2 Answer: {p2(jolt_diffs)}")
+    print(f" total time: {datetime.now() - start_time}")

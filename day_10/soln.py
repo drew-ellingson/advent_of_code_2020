@@ -37,7 +37,6 @@ def gen_sublist(jolt_diffs, index_list):  # thanks mcmanus
         var_list = jolt_diffs[index_list[i] + 1 : index_list[i + 1]]
         if len(var_list) < 2:  # no variations to gain by removing anything in 1 lists
             continue
-        print(var_list)
         yield var_list
 
 
@@ -84,8 +83,7 @@ def count_sublist_vars(sublist):  # some brute force
         for index_subset in all_index_subsets
     ]
     valids = [
-        is_valid(replace_index_subset(sublist, index_subset), sublist)
-        for index_subset in all_index_subsets
+        is_valid(replacement, sublist) for replacement in replacements
     ]
     return sum(valids)
 

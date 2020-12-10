@@ -127,7 +127,6 @@ if __name__ == "__main__":
 
     jolts, jolt_diffs = prep(jolts)
 
-    start_time = datetime.now()
     print(f"P1 Answer: {p1(jolt_diffs)}")
     print(f"P2 Answer: {p2(jolt_diffs)}")
     print(f" total time: {datetime.now() - start_time}")

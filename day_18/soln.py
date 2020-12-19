@@ -9,7 +9,9 @@ def get_exprs(in_file):
 
 
 def parse_expr(line):
-    """convert string number sentence into nested list expressions """
+    """convert string number sentence into nested list expressions 
+        eg. "1+(2*3)" --> ['1', '+', ['2', '*', '3']]
+    """
     line = "(" + line.replace(" ", "") + ")"
     eq_content = pp.Word(pp.nums) | "+" | "*"
     nest = pp.nestedExpr("(", ")", content=eq_content)
